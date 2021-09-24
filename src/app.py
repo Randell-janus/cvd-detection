@@ -3,7 +3,23 @@ from fastapi import FastAPI
 from joblib import load
 from src.features import Features
 
+from fastapi.middleware.cors import CORSMiddleware
+
 app = FastAPI()
+
+#adding cors policy
+origins = [
+    "*"
+]
+
+#add middleware
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins = origins,
+    allow_credentials = True,
+    allow_methods = ['*'],
+    allow_headers = ['*']
+)
 
 knn_clf_model = load('src/knn_clf_model.joblib') 
 
@@ -30,7 +46,7 @@ def predict_data(data: Features):
     if(prediction[0] == 0):
         prediction = "There's no presence of Cardiovascular Disease!"
     else:
-        prediction = "There is a presence of Cardiovascular Disease."
+        prediction = "There's a risk of Cardiovascular Disease."
     return {
         'prediction': prediction
     }

@@ -44,11 +44,14 @@ def predict_data(data: Features):
     prediction = knn_clf_model.predict([[age, gender, systolicBP, diastolicBP, cholesterol, 
                                          glucose, smoke, alcoholic, active, bmi]])
     if(prediction[0] == 0):
-        prediction = "There's no presence of Cardiovascular Disease!"
+        prediction = "There's no risk of Cardiovascular Disease!"
+        result = 0
     else:
         prediction = "There's a risk of Cardiovascular Disease."
+        result = 1
     return {
-        'prediction': prediction
+        'prediction': prediction,
+        'result': result
     }
     
 if __name__ == '__main__':

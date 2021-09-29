@@ -2,17 +2,14 @@ import uvicorn
 from fastapi import FastAPI
 from joblib import load
 from src.schemas.features import Features
-
 from fastapi.middleware.cors import CORSMiddleware
 
 app = FastAPI()
 
-#adding cors policy
 origins = [
     "*"
 ]
 
-#add middleware
 app.add_middleware(
     CORSMiddleware,
     allow_origins = origins,

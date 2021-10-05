@@ -1,14 +1,12 @@
 import uvicorn
 from fastapi import FastAPI
 from joblib import load
-from src.schemas.features import Features
+from src.schema import CvdRisk
 from fastapi.middleware.cors import CORSMiddleware
 
 app = FastAPI()
 
-origins = [
-    "*"
-]
+origins = ["*"]
 
 app.add_middleware(
     CORSMiddleware,
@@ -24,8 +22,8 @@ knn_clf_model = load('src/models/knn_clf_model.joblib')
 def index():
     return {'message': 'Go to /docs and try out the model'}
 
-@app.post('/predict')
-def detect_cvd_risk(data: Features):
+@app.post('/detect_cvd_risk')
+def detect_cvd_risk(data: CvdRisk):
     data = data.dict()
     age = data['age']
     gender = data['gender']

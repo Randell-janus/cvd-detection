@@ -1,6 +1,6 @@
 from pydantic import BaseModel, condecimal
 
-class Features(BaseModel):
+class CvdRisk(BaseModel):
     age: condecimal(decimal_places=0, ge=20, le=65)
     gender: condecimal(decimal_places=0, ge=0, le=1)
     systolicBP: condecimal(decimal_places=0, ge=90, le=200)
@@ -11,5 +11,4 @@ class Features(BaseModel):
     alcoholic: condecimal(decimal_places=0, ge=0, le=1)
     active: condecimal(decimal_places=0, ge=0, le=1)
     bmi: int
-    
     

@@ -8,7 +8,7 @@ from fastapi.middleware.cors import CORSMiddleware
 
 app = FastAPI()
 
-origins = ["*"]
+origins = ["https://cvd-risk-detection.vercel.app"]
 
 app.add_middleware(
     CORSMiddleware,
